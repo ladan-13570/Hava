@@ -5,15 +5,13 @@ function refreshWeather(response) {
   let descriptionElement = document.querySelector("#description");
   // let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#wind-speed");
-   let timeElement = document.querySelector("#time");
-   let date =new Date(response.data.time*1000);
-   let iconElement = document.querySelector("#icon")
-   iconElement.innerHTML=
-    `<img
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.innerHTML = `<img
        src="${response.data.condition.icon_url}"
        class="weather-app-icon"
-     />`
-   ;
+     />`;
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
   // humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -23,21 +21,20 @@ function refreshWeather(response) {
   console.log(response.data);
 }
 
-function formatDate(date){
+function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
-  let days =[
-  
+  let days = [
     "sunday",
     "monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
-  let day =days [date.getDay()];
-  if (minutes<10) {
+  let day = days[date.getDay()];
+  if (minutes < 10) {
     minutes = `0${minutes}`;
   }
   return `${day} ${hours}:${minutes}`;
@@ -53,15 +50,13 @@ function handleSearchSubmit(event) {
 
   searchCity(searchInput.value);
 }
-function displayForecast(){
-  
-
-  let days =["tue" , "wed" , "thu" , "fri" , "sat" ];
-let forcastHtml="";
-  days.forEach (function (day){
-forcastHtml = 
-forcastHtml + 
-`
+function displayForecast() {
+  let days = ["tue", "wed", "thu", "fri", "sat"];
+  let forcastHtml = "";
+  days.forEach(function (day) {
+    forcastHtml =
+      forcastHtml +
+      `
   <div class="weather-forecast-day">
   <div class="weather-forecast-date">${day}</div>
   <div class="weather-forecast-icon">🌤️</div>
@@ -75,7 +70,7 @@ forcastHtml +
   `;
   });
   let forecastElement = document.querySelector("#forecast");
-forecastElement.innerHTML = forcastHtml; 
+  forecastElement.innerHTML = forcastHtml;
 }
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
